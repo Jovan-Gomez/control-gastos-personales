@@ -7,7 +7,7 @@ import { generateId } from './helpers/generateId'
 import IconNewExpense from './img/nuevo-gasto.svg'
 
 function App() {
-  const [expensives, setExpensives] = useState(JSON.parse(localStorage.getItem('expensives') ?? []))
+  const [expensives, setExpensives] = useState([])
   const [budget, setBudget] = useState(Number(localStorage.getItem('budget' ?? 0)))
   const [open, setOpen] = useState(false)
   const [isValidBudget, setIsValidBudget] = useState(0)
@@ -19,6 +19,9 @@ function App() {
   useEffect(() => {
     if (Number(localStorage.getItem('budget')) > 0) {
       setIsValidBudget(true)
+    }
+    if (localStorage.getItem('expensives') !== null) {
+      setExpensives(JSON.parse(localStorage.getItem('expensives')))
     }
   }, [])
 
